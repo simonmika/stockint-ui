@@ -20,13 +20,17 @@
 	"tasks": [
 		{
 			"taskName": "lint",
-			"isBuildCommand": true,
 			"problemMatcher": [ "$tslint5" ]
 		},
 		{
 			"taskName": "build",
 			"isBuildCommand": true,
 			"problemMatcher": [ "$tsc" ]
+		},
+		{
+			"taskName": "start",
+			"problemMatcher": [ "$tsc" ],
+			"isBackground": true
 		}
 	]
 }
