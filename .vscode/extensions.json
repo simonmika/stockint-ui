@@ -1,0 +1,8 @@
+{
+	"recommendations": [
+		"eg2.tslint",
+		"ymotongpoo.licenser",
+		"msjsdiag.debugger-for-chrome",
+		"EditorConfig.editorconfig"
+	]
+}
