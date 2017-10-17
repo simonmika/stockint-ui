@@ -1,9 +1,5 @@
 import { Component, OnInit } from "@angular/core"
 import * as d3 from "d3"
-import * as d3Scale from "d3-scale"
-import * as d3Shape from "d3-shape"
-import * as d3Array from "d3-array"
-import * as d3Axis from "d3-axis"
 
 import { Stocks } from "./shared/data"
 
@@ -21,7 +17,7 @@ export class AppComponent implements OnInit {
 	private x: any
 	private y: any
 	private svg: any
-	private line: d3Shape.Line<[number, number]>
+	private line: d3.Line<[number, number]>
 	constructor() {
 		this.width = 900 - this.margin.left - this.margin.right
 		this.height = 500 - this.margin.top - this.margin.bottom
@@ -39,22 +35,20 @@ export class AppComponent implements OnInit {
 	}
 
 	private initAxis() {
-		this.x = d3Scale.scaleTime().range([0, this.width])
-		this.y = d3Scale.scaleLinear().range([this.height, 0])
-		this.x.domain(d3Array.extent(Stocks, (d: any) => d.date ))
-		this.y.domain(d3Array.extent(Stocks, (d: any) => d.value ))
+		this.x = d3.scaleTime().range([0, this.width])
+		this.y = d3.scaleLinear().range([this.height, 0])
+		this.x.domain(d3.extent(Stocks, (d: any) => d.date ))
+		this.y.domain(d3.extent(Stocks, (d: any) => d.value ))
 	}
 
 	private drawAxis() {
-
 		this.svg.append("g")
 			.attr("class", "axis axis--x")
 			.attr("transform", "translate(0," + this.height + ")")
-			.call(d3Axis.axisBottom(this.x))
-
+			.call(d3.axisBottom(this.x))
 		this.svg.append("g")
 			.attr("class", "axis axis--y")
-			.call(d3Axis.axisLeft(this.y))
+			.call(d3.axisLeft(this.y))
 			.append("text")
 			.attr("class", "axis-title")
 			.attr("transform", "rotate(-90)")
@@ -65,14 +59,12 @@ export class AppComponent implements OnInit {
 	}
 
 	private drawLine() {
-		this.line = d3Shape.line()
+		this.line = d3.line()
 			.x( (d: any) => this.x(d.date) )
 			.y( (d: any) => this.y(d.value) )
-
 		this.svg.append("path")
 			.datum(Stocks)
 			.attr("class", "line")
 			.attr("d", this.line)
 	}
 }
-
