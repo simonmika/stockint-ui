@@ -8,7 +8,7 @@
 		"object-literal-key-quotes": [ false ],
 		"arrow-parens": false,
 		"no-conditional-assignment": false,
-		"array-type": [ true ],
+		"array-type": [ true, "array" ],
 
 		"arrow-return-shorthand": true,
 		"callable-types": true,
