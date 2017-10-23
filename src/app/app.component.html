@@ -1,3 +1,40 @@
 <h1>{{title}}</h1>
 <h2>{{subtitle}}</h2>
 <svg width="900" height="500"></svg>
+<dl>
+	<dt>Volume</dt>
+	<dd>{{transactions ? transactions.volume : "undefined"}}</dd>
+	<dt>Average Price</dt>
+	<dd>{{transactions ? transactions.averagePrice : "undefined"}}</dd>
+	<dt>Start Time</dt>
+	<dd>{{transactions ? transactions.startTime : "undefined"}}</dd>
+	<dt>End Time</dt>
+	<dd>{{transactions ? transactions.endTime : "undefined"}}</dd>
+	<dt>Lowest Price</dt>
+	<dd>{{transactions ? transactions.minimumPrice : "undefined"}}</dd>
+	<dt>Highest Price</dt>
+	<dd>{{transactions ? transactions.maximumPrice : "undefined"}}</dd>
+</dl>
+<table>
+	<caption>Data Table</caption>
+	<thead>
+		<tr>
+			<th>Time</th>
+			<th>Price</th>
+			<th>Volume</th>
+			<th>Seller</th>
+			<th>Buyer</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let transaction of transactions.map()">
+			<td>{{transaction.time}}</td>
+			<td>{{transaction.price}}</td>
+			<td>{{transaction.volume}}</td>
+			<td>{{transaction.seller}}</td>
+			<td>{{transaction.buyer}}</td>
+		</tr>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>

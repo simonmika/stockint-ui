@@ -1,32 +1,44 @@
 import { Component, OnInit } from "@angular/core"
 import * as d3 from "d3"
+import * as moment from "moment"
 
-import { Stocks } from "./shared/data"
+import { DataService } from "./data.service"
+import * as stockint from "stockint"
 
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.css"],
+	providers: [DataService]
 })
 export class AppComponent implements OnInit {
+	transactions: stockint.Transactions
 	title = "StockInt"
 	subtitle = "Line Chart"
 	private margin = {top: 20, right: 20, bottom: 30, left: 50}
 	private width: number
 	private height: number
-	private x: any
-	private y: any
+	private x: d3.ScaleTime<number, number>
+	private y: d3.ScaleLinear<number, number>
 	private svg: any
 	private line: d3.Line<[number, number]>
-	constructor() {
+	constructor(private dataService: DataService) {
 		this.width = 900 - this.margin.left - this.margin.right
 		this.height = 500 - this.margin.top - this.margin.bottom
 	}
+	private getTransactions() {
+		this.dataService.getTransactions().then(t => {
+			console.log("Got transactions")
+			this.transactions = t
+			console.log(this.transactions)
+			this.initSvg()
+			this.initAxis(this.transactions)
+			this.drawAxis()
+			this.drawLine(t ? t.split(stockint.Intervall.TenMinutes).map(d => ({ date: d.startTime, value: d.averagePrice })) : [])
+			})
+	}
 	ngOnInit() {
-		this.initSvg()
-		this.initAxis()
-		this.drawAxis()
-		this.drawLine()
+		this.getTransactions()
 	}
 	private initSvg() {
 		this.svg = d3.select("svg")
@@ -34,11 +46,11 @@ export class AppComponent implements OnInit {
 			.attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")")
 	}
 
-	private initAxis() {
+	private initAxis(d: stockint.Transactions) {
 		this.x = d3.scaleTime().range([0, this.width])
 		this.y = d3.scaleLinear().range([this.height, 0])
-		this.x.domain(d3.extent(Stocks, (d: any) => d.date ))
-		this.y.domain(d3.extent(Stocks, (d: any) => d.value ))
+		this.x.domain([d.startTime, d.endTime])
+		this.y.domain([d.minimumPrice, d.maximumPrice])
 	}
 
 	private drawAxis() {
@@ -58,13 +70,15 @@ export class AppComponent implements OnInit {
 			.text("Price ($)")
 	}
 
-	private drawLine() {
+	private drawLine(data: {date: Date, value: number}[]) {
 		this.line = d3.line()
 			.x( (d: any) => this.x(d.date) )
 			.y( (d: any) => this.y(d.value) )
 		this.svg.append("path")
-			.datum(Stocks)
+			.datum(data)
 			.attr("class", "line")
+			.attr("fill", "none")
+			.attr("stroke", "black")
 			.attr("d", this.line)
 	}
 }
