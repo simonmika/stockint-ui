@@ -3,12 +3,12 @@ import { DataService } from "../data.service"
 import * as stockint from "stockint"
 
 @Component({
-	selector: "app-transactions-table",
-	templateUrl: "./transactions-table.component.html",
-	styleUrls: ["./transactions-table.component.css"],
+	selector: "app-intervall-information",
+	templateUrl: "./intervall-information.component.html",
+	styleUrls: ["./intervall-information.component.css"],
 	providers: [DataService],
 })
-export class TransactionsTableComponent implements OnInit {
+export class IntervallInformationComponent implements OnInit {
 	transactions: stockint.Transactions
 	constructor(private dataService: DataService) { }
 
