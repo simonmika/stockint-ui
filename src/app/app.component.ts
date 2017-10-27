@@ -23,17 +23,10 @@ import * as stockint from "stockint"
 	providers: [DataService]
 })
 export class AppComponent implements OnInit {
-	transactions: stockint.Transactions
 	title = "StockInt"
 	subtitle = "Line Chart"
 	constructor(private dataService: DataService) {
 	}
-	private getTransactions() {
-		this.dataService.getTransactions().then(t => {
-			this.transactions = t
-		})
-	}
 	ngOnInit() {
-		this.getTransactions()
 	}
 }

@@ -13,6 +13,6 @@ export class TransactionsTableComponent implements OnInit {
 	constructor(private dataService: DataService) { }
 
 	ngOnInit() {
-		this.dataService.getTransactions().then(t => this.transactions = t)
+		this.dataService.transactions.then(t => this.transactions = t)
 	}
 }

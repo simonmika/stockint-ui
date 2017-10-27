@@ -23,10 +23,8 @@ export class LineChartComponent implements OnInit {
 		this.height = 500 - this.margin.top - this.margin.bottom
 	}
 	private getTransactions() {
-		this.dataService.getTransactions().then(t => {
-			console.log("Got transactions")
+		this.dataService.transactions.then(t => {
 			this.transactions = t
-			console.log(this.transactions)
 			this.initSvg()
 			this.initAxis(this.transactions)
 			this.drawAxis()
