@@ -1,19 +1,23 @@
+<app-line-chart></app-line-chart>
 <h1>{{title}}</h1>
 <h2>{{subtitle}}</h2>
-<svg width="900" height="500"></svg>
 <dl>
 	<dt>Volume</dt>
 	<dd>{{transactions ? transactions.volume : "undefined"}}</dd>
-	<dt>Average Price</dt>
-	<dd>{{transactions ? transactions.averagePrice : "undefined"}}</dd>
-	<dt>Start Time</dt>
-	<dd>{{transactions ? transactions.startTime : "undefined"}}</dd>
-	<dt>End Time</dt>
-	<dd>{{transactions ? transactions.endTime : "undefined"}}</dd>
-	<dt>Lowest Price</dt>
-	<dd>{{transactions ? transactions.minimumPrice : "undefined"}}</dd>
-	<dt>Highest Price</dt>
-	<dd>{{transactions ? transactions.maximumPrice : "undefined"}}</dd>
+	<dt>Average</dt>
+	<dd>{{transactions ? transactions.average : "undefined"}}</dd>
+	<dt>Start</dt>
+	<dd>{{transactions ? transactions.date : "undefined"}}</dd>
+	<dt>End</dt>
+	<dd>{{transactions ? transactions.endDate : "undefined"}}</dd>
+	<dt>Open</dt>
+	<dd>{{transactions ? transactions.open : "undefined"}}</dd>
+	<dt>Close</dt>
+	<dd>{{transactions ? transactions.close : "undefined"}}</dd>
+	<dt>Low</dt>
+	<dd>{{transactions ? transactions.low : "undefined"}}</dd>
+	<dt>High</dt>
+	<dd>{{transactions ? transactions.high : "undefined"}}</dd>
 </dl>
 <table>
 	<caption>Data Table</caption>
