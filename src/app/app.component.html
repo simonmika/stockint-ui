@@ -1,6 +1,6 @@
-<app-line-chart></app-line-chart>
 <h1>{{title}}</h1>
 <h2>{{subtitle}}</h2>
+<app-line-chart></app-line-chart>
 <dl>
 	<dt>Volume</dt>
 	<dd>{{transactions ? transactions.volume : "undefined"}}</dd>
@@ -19,26 +19,4 @@
 	<dt>High</dt>
 	<dd>{{transactions ? transactions.high : "undefined"}}</dd>
 </dl>
-<table>
-	<caption>Data Table</caption>
-	<thead>
-		<tr>
-			<th>Time</th>
-			<th>Price</th>
-			<th>Volume</th>
-			<th>Seller</th>
-			<th>Buyer</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let transaction of transactions.map()">
-			<td>{{transaction.time}}</td>
-			<td>{{transaction.price}}</td>
-			<td>{{transaction.volume}}</td>
-			<td>{{transaction.seller}}</td>
-			<td>{{transaction.buyer}}</td>
-		</tr>
-	</tbody>
-	<tfoot>
-	</tfoot>
-</table>
+<app-transactions-table></app-transactions-table>

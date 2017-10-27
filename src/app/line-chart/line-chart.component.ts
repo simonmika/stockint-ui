@@ -8,7 +8,7 @@ import * as stockint from "stockint"
 	selector: "app-line-chart",
 	templateUrl: "./line-chart.component.html",
 	styleUrls: ["./line-chart.component.css"],
-	providers: [DataService]
+	providers: [DataService],
 })
 export class LineChartComponent implements OnInit {
 	transactions: stockint.Transactions

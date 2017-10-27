@@ -1,0 +1,23 @@
+<table>
+	<caption>Data Table</caption>
+	<thead>
+		<tr>
+			<th>Time</th>
+			<th>Price</th>
+			<th>Volume</th>
+			<th>Seller</th>
+			<th>Buyer</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let transaction of transactions.map()">
+			<td>{{transaction.time}}</td>
+			<td>{{transaction.price}}</td>
+			<td>{{transaction.volume}}</td>
+			<td>{{transaction.seller}}</td>
+			<td>{{transaction.buyer}}</td>
+		</tr>
+	</tbody>
+	<tfoot>
+	</tfoot>
+</table>

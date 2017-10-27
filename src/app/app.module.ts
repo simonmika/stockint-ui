@@ -4,11 +4,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 
 import { AppComponent } from "./app.component"
 import { LineChartComponent } from "./line-chart/line-chart.component"
+import { TransactionsTableComponent } from "./transactions-table/transactions-table.component"
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		LineChartComponent,
+		TransactionsTableComponent,
 	],
 	imports: [
 		BrowserModule,
