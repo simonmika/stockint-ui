@@ -1,6 +1,17 @@
 import { Component, OnInit } from "@angular/core"
 import * as d3 from "d3"
-import * as moment from "moment"
+
+declare namespace techan {
+	let scale: {
+		financetime: () => any
+	}
+	function candlestick(): Candlestick
+	class Candlestick {
+		xScale(scale: d3.ScaleTime<number, number>): Candlestick
+		yScale(scale: d3.ScaleTime<number, number>): Candlestick
+		accessor(): any
+	}
+}
 
 import { DataService } from "./data.service"
 import * as stockint from "stockint"
@@ -20,8 +31,8 @@ export class AppComponent implements OnInit {
 	private height: number
 	private x: d3.ScaleTime<number, number>
 	private y: d3.ScaleLinear<number, number>
-	private svg: any
-	private line: d3.Line<[number, number]>
+	private svg: d3.Selection<d3.BaseType, {}, HTMLElement, any>
+	private candlestick: techan.Candlestick
 	constructor(private dataService: DataService) {
 		this.width = 900 - this.margin.left - this.margin.right
 		this.height = 500 - this.margin.top - this.margin.bottom
@@ -34,8 +45,11 @@ export class AppComponent implements OnInit {
 			this.initSvg()
 			this.initAxis(this.transactions)
 			this.drawAxis()
-			this.drawLine(t ? t.split(stockint.Intervall.TenMinutes).map(d => ({ date: d.startTime, value: d.averagePrice })) : [])
-			})
+			const splitted = t ? t.split(stockint.Intervall.OneMinute) : []
+			this.drawLine(splitted.map(d => ({ date: d.date, value: d.average })))
+			this.drawLine(splitted.map(d => ({ date: d.date, value: d.low })))
+			// this.drawCandlestick(splitted)
+		})
 	}
 	ngOnInit() {
 		this.getTransactions()
@@ -47,10 +61,10 @@ export class AppComponent implements OnInit {
 	}
 
 	private initAxis(d: stockint.Transactions) {
-		this.x = d3.scaleTime().range([0, this.width])
+		this.x = /* techan.scale.financetime() */d3.scaleTime().range([0, this.width])
 		this.y = d3.scaleLinear().range([this.height, 0])
-		this.x.domain([d.startTime, d.endTime])
-		this.y.domain([d.minimumPrice, d.maximumPrice])
+		this.x.domain([d.date, d.endDate]).nice()
+		this.y.domain([d.low, d.high]).nice()
 	}
 
 	private drawAxis() {
@@ -71,14 +85,19 @@ export class AppComponent implements OnInit {
 	}
 
 	private drawLine(data: {date: Date, value: number}[]) {
-		this.line = d3.line()
-			.x( (d: any) => this.x(d.date) )
-			.y( (d: any) => this.y(d.value) )
+		const line = d3.line<{date: Date, value: number}>()
+			.x(d => this.x(d.date))
+			.y(d => this.y(d.value) )
 		this.svg.append("path")
 			.datum(data)
 			.attr("class", "line")
 			.attr("fill", "none")
 			.attr("stroke", "black")
-			.attr("d", this.line)
+			.attr("d", line)
+	}
+	private drawCandlestick(data: {date: Date, open: number, close: number, high: number, low: number, volume: number}[]) {
+		this.candlestick = techan.candlestick()
+		// this.svg.append("g")
+		// 	.datum(data).call(this.candlestick)
 	}
 }
