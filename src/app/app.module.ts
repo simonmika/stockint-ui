@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component"
 import { LineChartComponent } from "./line-chart/line-chart.component"
 import { TransactionsTableComponent } from "./transactions-table/transactions-table.component"
 import { IntervallInformationComponent } from "./intervall-information/intervall-information.component"
+import { OrderBookComponent } from "./order-book/order-book.component"
 
 @NgModule({
 	declarations: [
@@ -13,6 +14,7 @@ import { IntervallInformationComponent } from "./intervall-information/intervall
 		LineChartComponent,
 		TransactionsTableComponent,
 		IntervallInformationComponent,
+		OrderBookComponent,
 	],
 	imports: [
 		BrowserModule,
