@@ -22,8 +22,7 @@ export class LineChartComponent implements OnInit {
 	private plot: d3.Selection<d3.BaseType, {}, HTMLElement, any>
 	@ViewChild("svg")
 	svg: ElementRef
-	constructor(private dataService: DataService) {
-	}
+	constructor(private dataService: DataService) { }
 	ngOnInit() {
 		this.dataService.transactions.then(t => {
 			this.transactions = t

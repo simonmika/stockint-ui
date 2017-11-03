@@ -8,6 +8,40 @@
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<script src="http://d3js.org/d3.v4.min.js" defer></script>
 	<script src="http://techanjs.org/techan.min.js" defer></script>
+	<style>
+		body {
+			font: 10px sans-serif;
+		}
+
+		text {
+			fill: #000;
+		}
+
+		button {
+			position: absolute;
+			right: 20px;
+			top: 440px;
+			display: none;
+		}
+
+		path.candle {
+			stroke: #000000;
+		}
+
+		path.candle.body {
+			stroke-width: 0;
+		}
+
+		path.candle.up {
+			fill: #00AA00;
+			stroke: #00AA00;
+		}
+
+		path.candle.down {
+			fill: #FF0000;
+			stroke: #FF0000;
+		}
+	</style>
 </head>
 <body>
 	<app-root></app-root>

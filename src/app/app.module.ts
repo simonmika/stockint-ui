@@ -7,6 +7,7 @@ import { LineChartComponent } from "./line-chart/line-chart.component"
 import { TransactionsTableComponent } from "./transactions-table/transactions-table.component"
 import { IntervallInformationComponent } from "./intervall-information/intervall-information.component"
 import { OrderBookComponent } from "./order-book/order-book.component"
+import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart.component"
 
 @NgModule({
 	declarations: [
@@ -15,6 +16,7 @@ import { OrderBookComponent } from "./order-book/order-book.component"
 		TransactionsTableComponent,
 		IntervallInformationComponent,
 		OrderBookComponent,
+		CandlestickChartComponent,
 	],
 	imports: [
 		BrowserModule,
