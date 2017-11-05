@@ -7,7 +7,6 @@ import * as stockint from "stockint"
 @Component({
 	selector: "app-line-chart",
 	template: "<svg #svg></svg>",
-	styleUrls: ["./line-chart.component.css"],
 	providers: [DataService],
 })
 export class LineChartComponent implements OnInit {

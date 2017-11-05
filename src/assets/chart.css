@@ -1,9 +1,13 @@
-body {
-	font: 10px sans-serif;
+body, text {
+	font-size: 12px;
+	font-family: sans-serif, ubuntu;
 }
-
+body {
+	background-color: #333;
+	color: #eee;
+}
 text {
-	fill: #000;
+	fill: #eee;
 }
 
 button {
@@ -12,9 +16,11 @@ button {
 	top: 440px;
 	display: none;
 }
-
+line,
+path.line,
+path.domain,
 path.candle {
-	stroke: #000000;
+	stroke: #eee;
 }
 
 path.candle.body {

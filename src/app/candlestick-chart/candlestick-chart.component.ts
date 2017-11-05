@@ -8,7 +8,6 @@ declare var techan: any
 @Component({
 	selector: "app-candlestick-chart",
 	template: "<svg #svg></svg>",
-	styleUrls: ["./candlestick-chart.component.css"],
 	providers: [DataService],
 })
 export class CandlestickChartComponent implements OnInit {
