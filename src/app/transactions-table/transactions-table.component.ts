@@ -9,10 +9,10 @@ import * as stockint from "stockint"
 	providers: [DataService],
 })
 export class TransactionsTableComponent implements OnInit {
-	transactions: stockint.Transactions
+	transactions: stockint.Transaction[]
 	constructor(private dataService: DataService) { }
 
 	ngOnInit() {
-		this.dataService.transactions.then(t => this.transactions = t)
+		this.dataService.transactions.then(t => this.transactions = t.map())
 	}
 }
