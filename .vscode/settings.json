@@ -11,7 +11,7 @@
 		".vscode": true
 	},
 	"files.exclude": {
-		"node_modules": false,
+		"node_modules": true,
 		".vscode": false,
 		"build": true,
 		"**/.git": true
