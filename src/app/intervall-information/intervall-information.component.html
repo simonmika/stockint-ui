@@ -1,18 +1,27 @@
-<dl>
-	<dt>Volume</dt>
-	<dd>{{transactions ? transactions.volume : "undefined"}}</dd>
-	<dt>Average</dt>
-	<dd>{{transactions ? transactions.average : "undefined"}}</dd>
-	<dt>Start</dt>
-	<dd>{{transactions ? transactions.date : "undefined"}}</dd>
-	<dt>End</dt>
-	<dd>{{transactions ? transactions.endDate : "undefined"}}</dd>
-	<dt>Open</dt>
-	<dd>{{transactions ? transactions.open : "undefined"}}</dd>
-	<dt>Close</dt>
-	<dd>{{transactions ? transactions.close : "undefined"}}</dd>
-	<dt>Low</dt>
-	<dd>{{transactions ? transactions.low : "undefined"}}</dd>
-	<dt>High</dt>
-	<dd>{{transactions ? transactions.high : "undefined"}}</dd>
-</dl>
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>Today</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<dl>
+			<dt>Volume</dt>
+			<dd>{{transactions ? transactions.volume : "undefined"}}</dd>
+			<dt>Average</dt>
+			<dd>{{transactions ? transactions.average : "undefined"}}</dd>
+			<dt>Start</dt>
+			<dd>{{transactions ? transactions.date : "undefined"}}</dd>
+			<dt>End</dt>
+			<dd>{{transactions ? transactions.endDate : "undefined"}}</dd>
+			<dt>Open</dt>
+			<dd>{{transactions ? transactions.open : "undefined"}}</dd>
+			<dt>Close</dt>
+			<dd>{{transactions ? transactions.close : "undefined"}}</dd>
+			<dt>Low</dt>
+			<dd>{{transactions ? transactions.low : "undefined"}}</dd>
+			<dt>High</dt>
+			<dd>{{transactions ? transactions.high : "undefined"}}</dd>
+		</dl>
+	</mat-card-content>
+	<mat-card-footer>
+	</mat-card-footer>
+</mat-card>

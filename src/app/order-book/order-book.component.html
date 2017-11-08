@@ -1,43 +1,49 @@
-<table *ngIf="orderBook">
-	<caption>
-		<h2>Order Book</h2>
-	</caption>
-	<thead>
-		<tr>
-			<th>Volume</th>
-			<th>Price</th>
-			<th>Buy</th>
-			<th>Sell</th>
-			<th>Price</th>
-			<th>Volume</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<td>{{ orderBook.buy.volume }}</td>
-			<td></td>
-			<td>
-				<div [style.width]="buyWidth">&nbsp;</div>
-			</td>
-			<td>
-				<div [style.width]="sellWidth">&nbsp;</div>
-			</td>
-			<td></td>
-			<td>{{ orderBook.sell.volume }}</td>
-		</tr>
-	</tfoot>
-	<tbody>
-		<tr *ngFor="let line of orderBook.zip()">
-			<td>{{ line.buy.volume }}</td>
-			<td>{{ line.buy.price }}</td>
-			<td>
-				<div [style.width]="(line.buy.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div>
-			</td>
-			<td>
-				<div [style.width]="(line.sell.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div>
-			</td>
-			<td>{{ line.sell.price }}</td>
-			<td>{{ line.sell.volume }}</td>
-		</tr>
-	</tbody>
-</table>
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>Order Book</mat-card-title>
+	</mat-card-header>
+	<mat-card-content>
+		<table *ngIf="orderBook">
+			<thead>
+				<tr>
+					<th>Volume</th>
+					<th>Price</th>
+					<th>Buy</th>
+					<th>Sell</th>
+					<th>Price</th>
+					<th>Volume</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td>{{ orderBook.buy.volume }}</td>
+					<td></td>
+					<td>
+						<div [style.width]="buyWidth">&nbsp;</div>
+					</td>
+					<td>
+						<div [style.width]="sellWidth">&nbsp;</div>
+					</td>
+					<td></td>
+					<td>{{ orderBook.sell.volume }}</td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr *ngFor="let line of orderBook.zip()">
+					<td>{{ line.buy.volume }}</td>
+					<td>{{ line.buy.price }}</td>
+					<td>
+						<div [style.width]="(line.buy.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div>
+					</td>
+					<td>
+						<div [style.width]="(line.sell.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div>
+					</td>
+					<td>{{ line.sell.price }}</td>
+					<td>{{ line.sell.volume }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</mat-card-content>
+	<mat-card-footer>
+	</mat-card-footer>
+</mat-card>
