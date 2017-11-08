@@ -3,46 +3,34 @@
 		<mat-card-title>Order Book</mat-card-title>
 	</mat-card-header>
 	<mat-card-content>
-		<table *ngIf="orderBook">
-			<thead>
-				<tr>
-					<th>Volume</th>
-					<th>Price</th>
-					<th>Buy</th>
-					<th>Sell</th>
-					<th>Price</th>
-					<th>Volume</th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr>
-					<td>{{ orderBook.buy.volume }}</td>
-					<td></td>
-					<td>
-						<div [style.width]="buyWidth">&nbsp;</div>
-					</td>
-					<td>
-						<div [style.width]="sellWidth">&nbsp;</div>
-					</td>
-					<td></td>
-					<td>{{ orderBook.sell.volume }}</td>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr *ngFor="let line of orderBook.zip()">
-					<td>{{ line.buy.volume }}</td>
-					<td>{{ line.buy.price }}</td>
-					<td>
-						<div [style.width]="(line.buy.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div>
-					</td>
-					<td>
-						<div [style.width]="(line.sell.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div>
-					</td>
-					<td>{{ line.sell.price }}</td>
-					<td>{{ line.sell.volume }}</td>
-				</tr>
-			</tbody>
-		</table>
+		<mat-table #table [dataSource]="source">
+			<ng-container matColumnDef="buyVolume">
+				<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.buy.volume }} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="buyPrice">
+				<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.buy.price }} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="buyShare">
+				<mat-header-cell *matHeaderCellDef> Buy </mat-header-cell>
+				<mat-cell *matCellDef="let element"> <div [style.width]="(element.buy.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div> </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="sellShare">
+				<mat-header-cell *matHeaderCellDef> Sell </mat-header-cell>
+				<mat-cell *matCellDef="let element"> 	<div [style.width]="(element.sell.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div> </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="sellPrice">
+				<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.sell.price }} </mat-cell>
+			</ng-container>
+			<ng-container matColumnDef="sellVolume">
+				<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
+				<mat-cell *matCellDef="let element"> {{ element.sell.volume }} </mat-cell>
+			</ng-container>
+			<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+			<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+		</mat-table>
 	</mat-card-content>
 	<mat-card-footer>
 	</mat-card-footer>

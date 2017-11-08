@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core"
-
+import { MatTableDataSource } from "@angular/material"
 import { DataService } from "../data.service"
 import * as stockint from "stockint"
 
@@ -19,12 +19,15 @@ export class OrderBookComponent implements OnInit {
 			this.maximumVolumeCache = Math.max(this.orderBook.buy.reduce((p, c) => Math.max(p, c.volume), 0), this.orderBook.sell.reduce((p, c) => Math.max(p, c.volume), 0))
 		return this.maximumVolumeCache
 	}
+	readonly displayedColumns = ["buyVolume", "buyPrice", "buyShare", "sellShare", "sellPrice", "sellVolume"]
+	source: MatTableDataSource<{ buy: stockint.Order; sell: stockint.Order; }>
 	constructor(private dataService: DataService) { }
 
 	ngOnInit() {
 		this.dataService.orderBook.then(orderBook => {
 			orderBook = orderBook.selectDepth(5)
 			this.orderBook = orderBook
+			const source = new MatTableDataSource(orderBook.zip())
 		})
 	}
 }
