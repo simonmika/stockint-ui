@@ -1,23 +1,24 @@
-<table>
-	<caption>Data Table</caption>
-	<thead>
-		<tr>
-			<th>Time</th>
-			<th>Price</th>
-			<th>Volume</th>
-			<th>Seller</th>
-			<th>Buyer</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let transaction of transactions">
-			<td>{{transaction.time}}</td>
-			<td>{{transaction.price}}</td>
-			<td>{{transaction.volume}}</td>
-			<td>{{transaction.seller}}</td>
-			<td>{{transaction.buyer}}</td>
-		</tr>
-	</tbody>
-	<tfoot>
-	</tfoot>
-</table>
+<mat-table #table [dataSource]="source">
+	<ng-container matColumnDef="price">
+		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.price }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="volume">
+		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.volume }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="seller">
+		<mat-header-cell *matHeaderCellDef> Seller </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.seller }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="buyer">
+		<mat-header-cell *matHeaderCellDef> Buyer </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buyer }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="time">
+		<mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.time.toLocaleString() }} </mat-cell>
+	</ng-container>
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
