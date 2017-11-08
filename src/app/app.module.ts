@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser"
 import { NgModule } from "@angular/core"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
-import { MatTableModule } from "@angular/material"
+import { MatTableModule, MatPaginatorModule } from "@angular/material"
 
 import { AppComponent } from "./app.component"
 import { LineChartComponent } from "./line-chart/line-chart.component"
@@ -23,6 +23,7 @@ import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart
 		BrowserModule,
 		BrowserAnimationsModule,
 		MatTableModule,
+		MatPaginatorModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
