@@ -9,11 +9,15 @@
 	</ng-container>
 	<ng-container matColumnDef="buyShare">
 		<mat-header-cell *matHeaderCellDef> Buy </mat-header-cell>
-		<mat-cell *matCellDef="let element"> <div [style.width]="(element.buy.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div> </mat-cell>
+		<mat-cell *matCellDef="let element">
+			<app-fraction-bar [value]="(element.buy.volume / maximumVolume * 100)"></app-fraction-bar>
+		</mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellShare">
 		<mat-header-cell *matHeaderCellDef> Sell </mat-header-cell>
-		<mat-cell *matCellDef="let element"> 	<div [style.width]="(element.sell.volume / maximumVolume * 100).toString() + '%'">&nbsp;</div> </mat-cell>
+		<mat-cell *matCellDef="let element">
+			<app-fraction-bar [value]="(element.sell.volume / maximumVolume * 100)"></app-fraction-bar>
+		</mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellPrice">
 		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>

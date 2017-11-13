@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component"
 import { LineChartComponent } from "./line-chart/line-chart.component"
 import { TransactionsTableComponent } from "./transactions-table/transactions-table.component"
 import { IntervallInformationComponent } from "./intervall-information/intervall-information.component"
+import { FractionBarComponent } from "./fraction-bar/fraction-bar.component"
 import { OrderBookComponent } from "./order-book/order-book.component"
 import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart.component"
 
@@ -16,6 +17,7 @@ import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart
 		LineChartComponent,
 		TransactionsTableComponent,
 		IntervallInformationComponent,
+		FractionBarComponent,
 		OrderBookComponent,
 		CandlestickChartComponent,
 	],

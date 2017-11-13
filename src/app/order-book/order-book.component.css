@@ -1,20 +1,17 @@
-table > * > tr > td:nth-child(3),
-table > * > tr > td:nth-child(4) {
-	position: relative;
-	background: lightgrey;
-	padding: 0;
+mat-header-cell.mat-column-buyShare,
+mat-cell.mat-column-buyShare {
+	margin-right: 10px;
 }
-table > * > tr > td:nth-child(3) > div,
-table > * > tr > td:nth-child(4) > div {
-	position: absolute;
-	top: 0;
-	height: 100%;
+mat-header-cell.mat-column-buyShare,
+mat-cell.mat-column-buyShare {
+	margin-left: 10px;
 }
-table > * > tr > td:nth-child(3) > div {
-	right: 0;
-	background: blue;
-}
-table > * > tr > td:nth-child(4) > div {
-	left: 0;
-	background: red;
+
+mat-header-cell.mat-column-buyShare,
+mat-cell.mat-column-buyShare,
+mat-header-cell.mat-column-sellPrice,
+mat-cell.mat-column-sellPrice,
+mat-header-cell.mat-column-sellVolume,
+mat-cell.mat-column-sellVolume {
+	text-align: right;
 }
