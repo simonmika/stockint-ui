@@ -19,7 +19,7 @@ export class OrderBookComponent implements OnInit {
 			this.maximumVolumeCache = Math.max(this.orderBook.buy.reduce((p, c) => Math.max(p, c.volume), 0), this.orderBook.sell.reduce((p, c) => Math.max(p, c.volume), 0))
 		return this.maximumVolumeCache
 	}
-	readonly displayedColumns = ["buyVolume", "buyPrice", "buyShare", "sellShare", "sellPrice", "sellVolume"]
+	readonly displayedColumns = ["buyCount", "buyVolume", "buyPrice", "buyShare", "sellShare", "sellPrice", "sellVolume", "sellCount"]
 	source: MatTableDataSource<{ buy: stockint.Order; sell: stockint.Order; }>
 	constructor(private dataService: DataService) { }
 

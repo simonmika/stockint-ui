@@ -3,6 +3,10 @@
 		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
 		<mat-cell *matCellDef="let element"> {{ element.buy.volume }} </mat-cell>
 	</ng-container>
+	<ng-container matColumnDef="buyCount">
+		<mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy.count }} </mat-cell>
+	</ng-container>
 	<ng-container matColumnDef="buyPrice">
 		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
 		<mat-cell *matCellDef="let element"> {{ element.buy.price }} </mat-cell>
@@ -26,6 +30,10 @@
 	<ng-container matColumnDef="sellVolume">
 		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
 		<mat-cell *matCellDef="let element"> {{ element.sell.volume }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="sellCount">
+		<mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell.count }} </mat-cell>
 	</ng-container>
 	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

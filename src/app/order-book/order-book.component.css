@@ -12,6 +12,8 @@ mat-cell.mat-column-buyShare,
 mat-header-cell.mat-column-sellPrice,
 mat-cell.mat-column-sellPrice,
 mat-header-cell.mat-column-sellVolume,
-mat-cell.mat-column-sellVolume {
+mat-cell.mat-column-sellVolume,
+mat-header-cell.mat-column-sellCount,
+mat-cell.mat-column-sellCount {
 	text-align: right;
 }
