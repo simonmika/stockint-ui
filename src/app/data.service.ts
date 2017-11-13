@@ -11,6 +11,12 @@ export class DataService {
 			this.transactionsCache = this.instrument.then(async instrument => instrument ? await instrument.getTransactions() : undefined)
 		return this.transactionsCache
 	}
+	private pricesCache: Promise<stockint.Prices>
+	get prices(): Promise<stockint.Prices> {
+		if (!this.pricesCache)
+			this.pricesCache = this.transactions.then(transactions => stockint.Prices.create(transactions))
+		return this.pricesCache
+	}
 	get orderBook(): Promise<stockint.OrderBook> {
 		return this.instrument.then(async instrument => instrument ? await instrument.getOrderBook() : undefined)
 	}

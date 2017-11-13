@@ -10,6 +10,7 @@ import { IntervallInformationComponent } from "./intervall-information/intervall
 import { FractionBarComponent } from "./fraction-bar/fraction-bar.component"
 import { OrderBookComponent } from "./order-book/order-book.component"
 import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart.component"
+import { PricesChartComponent } from "./prices-chart/prices-chart.component"
 
 @NgModule({
 	declarations: [
@@ -20,6 +21,7 @@ import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart
 		FractionBarComponent,
 		OrderBookComponent,
 		CandlestickChartComponent,
+		PricesChartComponent,
 	],
 	imports: [
 		BrowserModule,
