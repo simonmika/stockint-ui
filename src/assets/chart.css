@@ -2,10 +2,6 @@ body, text {
 	font-size: 12px;
 	font-family: sans-serif, ubuntu;
 }
-body {
-	background-color: #333;
-	color: #eee;
-}
 text {
 	fill: #eee;
 }
