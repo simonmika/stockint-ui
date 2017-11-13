@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser"
 import { NgModule } from "@angular/core"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
-import { MatTableModule, MatPaginatorModule, MatToolbarModule, MatTabsModule } from "@angular/material"
+import { MaterialModule } from "./material.module"
 
 import { AppComponent } from "./app.component"
 import { LineChartComponent } from "./line-chart/line-chart.component"
@@ -22,10 +22,7 @@ import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		MatTableModule,
-		MatPaginatorModule,
-		MatToolbarModule,
-		MatTabsModule,
+		MaterialModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
