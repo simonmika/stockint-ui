@@ -27,7 +27,7 @@ export class OrderBookComponent implements OnInit {
 		this.dataService.orderBook.then(orderBook => {
 			orderBook = orderBook.selectDepth(5)
 			this.orderBook = orderBook
-			const source = new MatTableDataSource(orderBook.zip())
+			this.source = new MatTableDataSource(orderBook.zip())
 		})
 	}
 }

@@ -62,7 +62,7 @@ export class LineChartComponent implements OnInit {
 			.attr("y", 6)
 			.attr("dy", ".71em")
 			.style("text-anchor", "end")
-			.text("Price ($)")
+			.text("Price")
 	}
 
 	private drawLine(data: {date: Date, value: number}[]) {
