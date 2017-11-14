@@ -16,7 +16,7 @@ export class OrderBookComponent implements OnInit {
 	get buyWidth() { return (this.orderBook.buy.volume > this.orderBook.sell.volume ? 100 : this.orderBook.buy.volume / this.orderBook.sell.volume * 100).toString() + "%" }
 	get maximumVolume() {
 		if (!this.maximumVolumeCache)
-			this.maximumVolumeCache = Math.max(this.orderBook.buy.reduce((p, c) => Math.max(p, c.volume), 0), this.orderBook.sell.reduce((p, c) => Math.max(p, c.volume), 0))
+			this.maximumVolumeCache = Math.max(this.orderBook.buy.reduce((p, c) => c ? Math.max(p, c.volume) : p, 0), this.orderBook.sell.reduce((p, c) => c ? Math.max(p, c.volume) : p, 0))
 		return this.maximumVolumeCache
 	}
 	readonly displayedColumns = ["buyCount", "buyVolume", "buyPrice", "buyShare", "sellShare", "sellPrice", "sellVolume", "sellCount"]
@@ -25,7 +25,7 @@ export class OrderBookComponent implements OnInit {
 
 	ngOnInit() {
 		this.dataService.orderBook.then(orderBook => {
-			orderBook = orderBook.selectDepth(5)
+			// orderBook = orderBook.selectDepth(10)
 			this.orderBook = orderBook
 			this.source = new MatTableDataSource(orderBook.zip())
 		})

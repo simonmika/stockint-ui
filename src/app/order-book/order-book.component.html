@@ -1,39 +1,39 @@
 <mat-table #table [dataSource]="source">
 	<ng-container matColumnDef="buyVolume">
 		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.buy.volume }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy ? element.buy.volume : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="buyCount">
 		<mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.buy.count }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy ? element.buy.count : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="buyPrice">
 		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.buy.price }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy ? element.buy.price : ""  }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="buyShare">
 		<mat-header-cell *matHeaderCellDef> Buy </mat-header-cell>
 		<mat-cell *matCellDef="let element">
-			<app-fraction-bar [value]="(element.buy.volume / maximumVolume * 100)"></app-fraction-bar>
+			<app-fraction-bar *ngIf="element.buy" [value]="element.buy.volume / maximumVolume * 100"></app-fraction-bar>
 		</mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellShare">
 		<mat-header-cell *matHeaderCellDef> Sell </mat-header-cell>
 		<mat-cell *matCellDef="let element">
-			<app-fraction-bar [value]="(element.sell.volume / maximumVolume * 100)"></app-fraction-bar>
+			<app-fraction-bar *ngIf="element.sell" [value]="element.sell.volume / maximumVolume * 100"></app-fraction-bar>
 		</mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellPrice">
 		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.sell.price }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell ? element.sell.price : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellVolume">
 		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.sell.volume }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell ? element.sell.volume : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellCount">
 		<mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.sell.count }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell ? element.sell.count : "" }} </mat-cell>
 	</ng-container>
 	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
