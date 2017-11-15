@@ -11,6 +11,9 @@ import { FractionBarComponent } from "./fraction-bar/fraction-bar.component"
 import { OrderBookComponent } from "./order-book/order-book.component"
 import { CandlestickChartComponent } from "./candlestick-chart/candlestick-chart.component"
 import { PricesChartComponent } from "./prices-chart/prices-chart.component"
+import { BrokersTableComponent } from "./brokers-table/brokers-table.component"
+
+import { IntegerPipe } from "./integer.pipe"
 
 @NgModule({
 	declarations: [
@@ -22,6 +25,8 @@ import { PricesChartComponent } from "./prices-chart/prices-chart.component"
 		OrderBookComponent,
 		CandlestickChartComponent,
 		PricesChartComponent,
+		BrokersTableComponent,
+		IntegerPipe,
 	],
 	imports: [
 		BrowserModule,

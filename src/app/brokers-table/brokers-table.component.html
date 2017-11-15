@@ -1,0 +1,28 @@
+<mat-table #table [dataSource]="source" matSort>
+	<ng-container matColumnDef="broker">
+		<mat-header-cell *matHeaderCellDef> Broker </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.broker }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="boughtPrice">
+		<mat-header-cell *matHeaderCellDef> Bought Price </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy.price | number:'1.2-2' }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="bought">
+		<mat-header-cell *matHeaderCellDef> Bought Volume </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy.volume | integer }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="sold">
+		<mat-header-cell *matHeaderCellDef> Sold Volume </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell.volume | integer }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="soldPrice">
+		<mat-header-cell *matHeaderCellDef> Sold Price </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell.price | number:'1.2-2' }} </mat-cell>
+	</ng-container>
+	<ng-container matColumnDef="netto">
+		<mat-header-cell *matHeaderCellDef> Netto Bought </mat-header-cell>
+		<mat-cell *matCellDef="let element"> {{ element.netto | integer }} </mat-cell>
+	</ng-container>
+	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

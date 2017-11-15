@@ -1,0 +1,4 @@
+mat-header-cell:not(.mat-column-broker),
+mat-cell:not(.mat-column-broker) {
+	text-align: right;
+}
