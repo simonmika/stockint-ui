@@ -4,7 +4,7 @@ import * as stockint from "stockint"
 
 @Injectable()
 export class DataService {
-	private instrument = stockint.Instrument.open("SE0007692124")
+	readonly instrument = stockint.Instrument.open("SE0007692124")
 	private transactionsCache: Promise<stockint.Transactions>
 	get transactions(): Promise<stockint.Transactions> {
 		if (!this.transactionsCache)

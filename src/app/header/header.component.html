@@ -1,0 +1,37 @@
+<mat-toolbar>
+	<mat-toolbar-row>
+		<h1>{{instrument.name}}</h1>
+		<h3>{{instrument.shortName}}</h3>
+		<span style="flex: 1 1 auto;"></span>
+		<!-- <button mat-mini-fab><mat-icon>update</mat-icon></button> -->
+	</mat-toolbar-row>
+	<mat-toolbar-row>
+		<table>
+			<thead>
+				<tr>
+					<!-- <th colspan="2">Today</th> -->
+					<th>Buy</th>
+					<th>Sell</th>
+					<th>Latest</th>
+					<th>High</th>
+					<th>Low</th>
+					<th>Volume</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<!-- <td></td>
+					<td></td> -->
+					<td>{{ (orderBook.buy.first.price | number:'1.2-2') }}</td>
+					<td>{{ (orderBook.sell.first.price | number:'1.2-2') }}</td>
+					<td>{{ transactions ? (transactions.close | number:'1.2-2') : "-" }}</td>
+					<td>{{ transactions ? (transactions.low | number:'1.2-2') : "-" }}</td>
+					<td>{{ transactions ? (transactions.high | number:'1.2-2') : "-" }}</td>
+					<td>{{ transactions ? (transactions.volume | integer) : "-" }}</td>
+					<td>{{ transactions ? (transactions.endDate | date:'HH:mm:ss') : "-" }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</mat-toolbar-row>
+</mat-toolbar>

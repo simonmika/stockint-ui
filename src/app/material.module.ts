@@ -8,6 +8,8 @@ import {
 	MatProgressBarModule,
 	MatProgressBar,
 	MatSortModule,
+	MatIconModule,
+	MatButtonModule,
 } from "@angular/material"
 
 @NgModule({
@@ -18,6 +20,8 @@ import {
 		MatTabsModule,
 		MatProgressBarModule,
 		MatSortModule,
+		MatIconModule,
+		MatButtonModule,
 	],
 	exports: [
 		MatTableModule,
@@ -26,6 +30,8 @@ import {
 		MatTabsModule,
 		MatProgressBarModule,
 		MatSortModule,
+		MatIconModule,
+		MatButtonModule,
 	],
 })
 export class MaterialModule { }
