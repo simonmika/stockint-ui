@@ -16,7 +16,7 @@ export class TransactionsTableComponent implements OnInit, AfterViewInit {
 	constructor(private dataService: DataService) { }
 	ngOnInit() {
 		this.dataService.transactions.then(t => {
-			this.source = new MatTableDataSource(t.map())
+			this.source = new MatTableDataSource(t.map().reverse())
 			if (this.paginator)
 				this.source.paginator = this.paginator
 		})

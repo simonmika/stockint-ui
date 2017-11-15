@@ -1,3 +1,7 @@
+svg {
+	background: #424242;
+	width: 100%;
+}
 body, text {
 	font-size: 12px;
 	font-family: sans-serif, ubuntu;

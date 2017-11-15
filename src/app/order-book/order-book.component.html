@@ -1,15 +1,15 @@
 <mat-table #table [dataSource]="source">
 	<ng-container matColumnDef="buyVolume">
 		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.buy ? element.buy.volume : "" }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy ? (element.buy.volume | integer) : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="buyCount">
 		<mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.buy ? element.buy.count : "" }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy ? (element.buy.count | integer) : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="buyPrice">
 		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.buy ? element.buy.price : ""  }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.buy ? (element.buy.price | number:'1.2-2') : ""  }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="buyShare">
 		<mat-header-cell *matHeaderCellDef> Buy </mat-header-cell>
@@ -25,15 +25,15 @@
 	</ng-container>
 	<ng-container matColumnDef="sellPrice">
 		<mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.sell ? element.sell.price : "" }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell ? (element.sell.price | number:'1.2-2') : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellVolume">
 		<mat-header-cell *matHeaderCellDef> Volume </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.sell ? element.sell.volume : "" }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell ? (element.sell.volume | integer) : "" }} </mat-cell>
 	</ng-container>
 	<ng-container matColumnDef="sellCount">
 		<mat-header-cell *matHeaderCellDef> Count </mat-header-cell>
-		<mat-cell *matCellDef="let element"> {{ element.sell ? element.sell.count : "" }} </mat-cell>
+		<mat-cell *matCellDef="let element"> {{ element.sell ?( element.sell.count | integer) : "" }} </mat-cell>
 	</ng-container>
 	<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 	<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
