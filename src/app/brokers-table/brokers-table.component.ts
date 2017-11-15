@@ -11,7 +11,7 @@ import * as stockint from "stockint"
 })
 export class BrokersTableComponent implements OnInit, AfterViewInit {
 	displayedColumns = ["broker", "boughtPrice", "bought", "sold", "soldPrice", "netto"]
-	source: MatTableDataSource<stockint.Transaction>
+	source: MatTableDataSource<{ broker: string, netto: number, buy: { price: number, volume: number, count: number }, sell: { price: number, volume: number, count: number } }>
 	@ViewChild(MatSort)
 	sort: MatSort
 	constructor(private dataService: DataService) { }
