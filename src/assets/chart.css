@@ -1,6 +1,10 @@
 svg {
 	background: #424242;
 	width: 100%;
+	height: calc(100vw * 3 / 4);
+	max-height: 100vh;
+	min-width: 400px;
+	min-height: 300px;
 }
 body, text {
 	font-size: 12px;

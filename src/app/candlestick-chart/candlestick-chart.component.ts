@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core"
+import { Component, OnInit, OnChanges, ViewChild, ElementRef } from "@angular/core"
 import * as d3 from "d3"
 
 import { DataService } from "../data.service"
@@ -7,14 +7,14 @@ declare var techan: any
 
 @Component({
 	selector: "app-candlestick-chart",
-	templateUrl: "./candlestick-chart.component.html",
+	template: "<svg #svg></svg>",
 	providers: [DataService],
 })
-export class CandlestickChartComponent implements OnInit {
-	private transactions: stockint.Transactions
+export class CandlestickChartComponent implements OnInit, OnChanges {
+	private transactions: stockint.Transactions[]
 	private margin = {top: 20, right: 20, bottom: 30, left: 50}
-	private width = 600
-	private height = 500
+	private get width() { return Math.round(this.svg.nativeElement.clientWidth) }
+	private get height() { return Math.round(this.svg.nativeElement.clientHeight) }
 	private get plotWidth(): number { return this.width - this.margin.left - this.margin.right }
 	private get plotHeight(): number { return this.height - this.margin.top - this.margin.bottom }
 	private x: d3.ScaleTime<number, number>
@@ -27,8 +27,18 @@ export class CandlestickChartComponent implements OnInit {
 
 	ngOnInit() {
 		this.dataService.transactions.then(t => {
-			this.transactions = t
-			const splitted = t ? t.split(stockint.Intervall.FiveMinutes) : []
+			this.transactions = t ? t.split(stockint.Intervall.FiveMinutes) : []
+			d3.select(window).on("resize", () => this.draw())
+			this.draw()
+		})
+	}
+	ngOnChanges() {
+		this.draw()
+	}
+	draw() {
+		if (this.transactions) {
+			if (this.plot)
+				this.plot.remove()
 			this.plot = d3.select(this.svg.nativeElement)
 				.attr("width", this.width)
 				.attr("height", this.height)
@@ -37,28 +47,17 @@ export class CandlestickChartComponent implements OnInit {
 			this.x = techan.scale.financetime().range([0, this.plotWidth])
 			this.y = d3.scaleLinear().range([this.plotHeight, 0])
 			this.candlestick = techan.plot.candlestick().xScale(this.x).yScale(this.y)
-			this.loadData(splitted)
-		})
+			this.loadData(this.transactions)
+		}
 	}
 	loadData(data: stockint.Transactions[]) {
 		this.candlestick = techan.plot.candlestick().xScale(this.x).yScale(this.y)
 		const accessor = this.candlestick.accessor()
 		this.plot.append("g").attr("class", "candlestick")
 		this.plot.append("g").attr("class", "x axis").attr("transform", "translate(0," + this.plotHeight + ")")
-
-		this.plot.append("g")
-						.attr("class", "y axis")
-						.append("text")
-						.attr("transform", "rotate(-90)")
-						.attr("y", 6)
-						.attr("dy", ".71em")
-						.style("text-anchor", "end")
-						.text("Price")
+		this.plot.append("g").attr("class", "y axis")
 
 		// Data to display initially
-		this.draw(data)
-	}
-	draw(data: stockint.Transactions[]) {
 		this.x.domain(data.map(this.candlestick.accessor().d))
 		this.y.domain(techan.scale.plot.ohlc(data, this.candlestick.accessor()).domain())
 

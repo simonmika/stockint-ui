@@ -12,8 +12,8 @@ import * as stockint from "stockint"
 export class LineChartComponent implements OnInit {
 	private transactions: stockint.Transactions
 	private margin = {top: 20, right: 20, bottom: 30, left: 50}
-	private width = 600
-	private height = 500
+	private get width() { return Math.round(this.svg.nativeElement.clientWidth) }
+	private get height() { return Math.round(this.svg.nativeElement.clientHeight) }
 	private get plotWidth(): number { return this.width - this.margin.left - this.margin.right }
 	private get plotHeight(): number { return this.height - this.margin.top - this.margin.bottom }
 	private x: d3.ScaleTime<number, number>
@@ -25,15 +25,24 @@ export class LineChartComponent implements OnInit {
 	ngOnInit() {
 		this.dataService.transactions.then(t => {
 			this.transactions = t
+			d3.select(window).on("resize.updatesvg", () => this.draw())
+			this.draw()
+		})
+	}
+	private draw() {
+		console.log("test")
+		if (this.transactions) {
 			this.initSvg()
 			this.initAxis(this.transactions)
 			this.drawAxis()
-			const splitted = t ? t.split(stockint.Intervall.OneMinute) : []
+			const splitted = this.transactions.split(stockint.Intervall.OneMinute)
 			this.drawLine(splitted.map(d => ({ date: d.date, value: d.average })))
 			this.drawLine(splitted.map(d => ({ date: d.date, value: d.low })))
-		})
+		}
 	}
 	private initSvg() {
+		if (this.plot)
+			this.plot.remove()
 		this.plot = d3.select(this.svg.nativeElement)
 			.attr("width", this.width)
 			.attr("height", this.height)

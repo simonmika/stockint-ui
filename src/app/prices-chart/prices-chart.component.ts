@@ -10,9 +10,10 @@ import * as stockint from "stockint"
 	providers: [DataService],
 })
 export class PricesChartComponent implements OnInit {
+	private prices: stockint.Prices
 	private margin = {top: 20, right: 20, bottom: 30, left: 50}
-	private width = 600
-	private height = 500
+	private get width() { return Math.round(this.svg.nativeElement.clientWidth) }
+	private get height() { return Math.round(this.svg.nativeElement.clientHeight) }
 	private get plotWidth(): number { return this.width - this.margin.left - this.margin.right }
 	private get plotHeight(): number { return this.height - this.margin.top - this.margin.bottom }
 	private x: d3.ScaleLinear<number, number>
@@ -23,13 +24,22 @@ export class PricesChartComponent implements OnInit {
 	constructor(private dataService: DataService) { }
 	ngOnInit() {
 		this.dataService.prices.then(prices => {
-			this.initSvg()
-			this.initAxis(prices)
-			this.drawAxis()
-			this.drawLine(prices.volumes)
+			this.prices = prices
+			d3.select(window).on("resize.updatesvg", () => this.draw())
+			this.draw()
 		})
 	}
+	private draw() {
+		if (this.prices) {
+			this.initSvg()
+			this.initAxis(this.prices)
+			this.drawAxis()
+			this.drawLine(this.prices.volumes)
+		}
+	}
 	private initSvg() {
+		if (this.plot)
+			this.plot.remove()
 		this.plot = d3.select(this.svg.nativeElement)
 			.attr("width", this.width)
 			.attr("height", this.height)
